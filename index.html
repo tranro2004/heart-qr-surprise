@@ -12,153 +12,36 @@
         }
 
         body {
-            background: linear-gradient(45deg, #ff6b9d, #ff8fab, #c44569, #f8b500);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #89c4f4 50%, #b3d4fc 75%, #c3e5ff 100%);
             background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
+            animation: gradientShift 10s ease infinite;
             height: 100vh;
             overflow: hidden;
             font-family: 'Arial', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
         }
 
-        .container {
-            text-align: center;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .heart {
-            font-size: 100px;
-            color: #ff1744;
-            animation: heartBeat 1.5s infinite;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 0 20px rgba(255, 23, 68, 0.8));
-        }
-
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .text-container {
-            position: relative;
-            height: 200px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .floating-text {
+        /* Floating bubbles background */
+        .bubble {
             position: absolute;
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            animation: floatAndFade 4s infinite linear;
-            white-space: nowrap;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: bubbleFloat 15s infinite linear;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .floating-text:nth-child(1) { animation-delay: 0s; left: 10%; }
-        .floating-text:nth-child(2) { animation-delay: 0.5s; left: 20%; }
-        .floating-text:nth-child(3) { animation-delay: 1s; left: 30%; }
-        .floating-text:nth-child(4) { animation-delay: 1.5s; left: 40%; }
-        .floating-text:nth-child(5) { animation-delay: 2s; left: 50%; }
-        .floating-text:nth-child(6) { animation-delay: 2.5s; left: 60%; }
-        .floating-text:nth-child(7) { animation-delay: 3s; left: 70%; }
-        .floating-text:nth-child(8) { animation-delay: 3.5s; left: 80%; }
-
-        @keyframes floatAndFade {
-            0% {
-                opacity: 0;
-                transform: translateY(100px) scale(0.5);
-            }
-            25% {
-                opacity: 1;
-                transform: translateY(0px) scale(1);
-            }
-            75% {
-                opacity: 1;
-                transform: translateY(-50px) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-150px) scale(0.5);
-            }
-        }
-
-        .main-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 36px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
-            animation: glow 2s infinite alternate;
-            z-index: 10;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 3px 3px 6px rgba(0,0,0,0.7), 0 0 20px rgba(255,255,255,0.8);
-            }
-            to {
-                text-shadow: 3px 3px 6px rgba(0,0,0,0.7), 0 0 30px rgba(255,255,255,1), 0 0 40px rgba(255,182,193,0.8);
-            }
-        }
-
-        .sparkles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .sparkle {
-            position: absolute;
-            color: white;
-            font-size: 20px;
-            animation: sparkle 3s infinite linear;
-        }
-
-        @keyframes sparkle {
-            0% {
-                opacity: 0;
-                transform: scale(0) rotate(0deg);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1) rotate(180deg);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0) rotate(360deg);
-            }
-        }
-
-        .music-note {
-            position: absolute;
-            font-size: 30px;
-            color: rgba(255,255,255,0.7);
-            animation: musicFloat 6s infinite linear;
-        }
-
-        @keyframes musicFloat {
+        @keyframes bubbleFloat {
             0% {
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
@@ -174,6 +57,257 @@
                 opacity: 0;
             }
         }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .heart {
+            font-size: 120px;
+            background: linear-gradient(45deg, #ff6b9d, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: heartBeat 2s infinite, heartGlow 3s infinite alternate;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 30px rgba(79, 172, 254, 0.6));
+            position: relative;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-2deg); }
+            50% { transform: scale(1.2) rotate(0deg); }
+            75% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        @keyframes heartGlow {
+            from {
+                filter: drop-shadow(0 0 30px rgba(79, 172, 254, 0.6)) 
+                        drop-shadow(0 0 60px rgba(79, 172, 254, 0.4));
+            }
+            to {
+                filter: drop-shadow(0 0 50px rgba(79, 172, 254, 0.8)) 
+                        drop-shadow(0 0 100px rgba(79, 172, 254, 0.6));
+            }
+        }
+
+        .text-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-text {
+            position: absolute;
+            font-size: 26px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffffff, #e3f2fd, #bbdefb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: floatAndFade 5s infinite linear;
+            white-space: nowrap;
+            backdrop-filter: blur(5px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .floating-text:nth-child(1) { animation-delay: 0s; left: 5%; }
+        .floating-text:nth-child(2) { animation-delay: 0.6s; left: 15%; }
+        .floating-text:nth-child(3) { animation-delay: 1.2s; left: 25%; }
+        .floating-text:nth-child(4) { animation-delay: 1.8s; left: 35%; }
+        .floating-text:nth-child(5) { animation-delay: 2.4s; left: 45%; }
+        .floating-text:nth-child(6) { animation-delay: 3s; left: 55%; }
+        .floating-text:nth-child(7) { animation-delay: 3.6s; left: 65%; }
+        .floating-text:nth-child(8) { animation-delay: 4.2s; left: 75%; }
+
+        @keyframes floatAndFade {
+            0% {
+                opacity: 0;
+                transform: translateY(120px) scale(0.3) rotate(-10deg);
+                filter: blur(5px);
+            }
+            15% {
+                opacity: 1;
+                transform: translateY(0px) scale(1) rotate(0deg);
+                filter: blur(0px);
+            }
+            85% {
+                opacity: 1;
+                transform: translateY(-80px) scale(1.1) rotate(5deg);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(0.3) rotate(10deg);
+                filter: blur(5px);
+            }
+        }
+
+        .main-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 42px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffffff, #e1f5fe, #b3e5fc, #81d4fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s infinite alternate, bounce 4s infinite;
+            z-index: 20;
+            padding: 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(79, 172, 254, 0.3);
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                            0 0 40px rgba(79, 172, 254, 0.6),
+                            0 0 60px rgba(79, 172, 254, 0.4);
+                box-shadow: 0 8px 32px rgba(79, 172, 254, 0.3),
+                           0 0 80px rgba(79, 172, 254, 0.2);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 1),
+                            0 0 60px rgba(79, 172, 254, 0.8),
+                            0 0 90px rgba(79, 172, 254, 0.6);
+                box-shadow: 0 12px 40px rgba(79, 172, 254, 0.5),
+                           0 0 120px rgba(79, 172, 254, 0.4);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 24px;
+            animation: sparkle 4s infinite linear;
+            filter: drop-shadow(0 0 10px rgba(79, 172, 254, 0.8));
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            25% {
+                opacity: 1;
+                transform: scale(1.2) rotate(90deg);
+            }
+            75% {
+                opacity: 1;
+                transform: scale(0.8) rotate(270deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
+        }
+
+        .music-note {
+            position: absolute;
+            font-size: 35px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: musicFloat 8s infinite linear;
+            filter: drop-shadow(0 0 15px rgba(79, 172, 254, 0.6));
+        }
+
+        @keyframes musicFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+                transform: translateY(80vh) rotate(45deg) scale(1);
+            }
+            85% {
+                opacity: 1;
+                transform: translateY(20vh) rotate(315deg) scale(1.2);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Particle system */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.8), transparent);
+            border-radius: 50%;
+            animation: particleMove 6s infinite linear;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .heart {
+                font-size: 80px;
+            }
+            .main-message {
+                font-size: 28px;
+                padding: 15px;
+            }
+            .floating-text {
+                font-size: 20px;
+                padding: 6px 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -184,69 +318,131 @@
             <div class="floating-text">Anh Xin Lỗi Em</div>
             <div class="floating-text">Em là tất cả</div>
             <div class="floating-text">Mãi mãi bên nhau</div>
-            <div class="floating-text">Xin lỖI rất nhiều lắm</div>
+            <div class="floating-text">Xin lỗi rất nhiều lắm</div>
             <div class="floating-text">Em đẹp nhất</div>
             <div class="floating-text">Em mãi đỉnh</div>
             <div class="floating-text">Forever & Always</div>
-            <div class="floating-text"> Hãy thứ lỗi cho anh 💕</div>
+            <div class="floating-text">Hãy thứ lỗi cho anh 💕</div>
             
             <div class="main-message">💖 Dành cho em NGỌC ANH 💖</div>
         </div>
 
         <div class="sparkles">
-            <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;">✨</div>
-            <div class="sparkle" style="top: 30%; left: 80%; animation-delay: 1s;">⭐</div>
-            <div class="sparkle" style="top: 60%; left: 20%; animation-delay: 2s;">💫</div>
-            <div class="sparkle" style="top: 80%; left: 70%; animation-delay: 0.5s;">✨</div>
-            <div class="sparkle" style="top: 40%; left: 90%; animation-delay: 1.5s;">⭐</div>
-            <div class="sparkle" style="top: 70%; left: 5%; animation-delay: 2.5s;">💫</div>
+            <div class="sparkle" style="top: 15%; left: 8%; animation-delay: 0s;">✨</div>
+            <div class="sparkle" style="top: 25%; left: 85%; animation-delay: 1s;">⭐</div>
+            <div class="sparkle" style="top: 65%; left: 15%; animation-delay: 2s;">💫</div>
+            <div class="sparkle" style="top: 85%; left: 75%; animation-delay: 0.5s;">✨</div>
+            <div class="sparkle" style="top: 45%; left: 92%; animation-delay: 1.5s;">⭐</div>
+            <div class="sparkle" style="top: 75%; left: 3%; animation-delay: 2.5s;">💫</div>
+            <div class="sparkle" style="top: 35%; left: 60%; animation-delay: 3s;">✨</div>
+            <div class="sparkle" style="top: 55%; left: 40%; animation-delay: 3.5s;">⭐</div>
         </div>
 
-        <div class="music-note" style="left: 10%; animation-delay: 0s;">🎵</div>
-        <div class="music-note" style="left: 30%; animation-delay: 2s;">🎶</div>
-        <div class="music-note" style="left: 50%; animation-delay: 4s;">🎵</div>
-        <div class="music-note" style="left: 70%; animation-delay: 1s;">🎶</div>
-        <div class="music-note" style="left: 90%; animation-delay: 3s;">🎵</div>
+        <div class="music-note" style="left: 5%; animation-delay: 0s;">🎵</div>
+        <div class="music-note" style="left: 25%; animation-delay: 2s;">🎶</div>
+        <div class="music-note" style="left: 45%; animation-delay: 4s;">🎵</div>
+        <div class="music-note" style="left: 65%; animation-delay: 1s;">🎶</div>
+        <div class="music-note" style="left: 85%; animation-delay: 3s;">🎵</div>
     </div>
 
     <script>
-        // Tạo thêm sparkles động
+        // Tạo bubbles floating background
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            const size = Math.random() * 100 + 20;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.animationDelay = Math.random() * 5 + 's';
+            bubble.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            
+            document.body.appendChild(bubble);
+            
+            setTimeout(() => {
+                bubble.remove();
+            }, 20000);
+        }
+
+        // Tạo particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        // Tạo sparkles động
         function createSparkle() {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
-            sparkle.innerHTML = ['✨', '⭐', '💫'][Math.floor(Math.random() * 3)];
+            sparkle.innerHTML = ['✨', '⭐', '💫', '🌟'][Math.floor(Math.random() * 4)];
             sparkle.style.left = Math.random() * 100 + '%';
             sparkle.style.top = Math.random() * 100 + '%';
-            sparkle.style.animationDelay = Math.random() * 3 + 's';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparkle.style.fontSize = (Math.random() * 20 + 15) + 'px';
             
             document.querySelector('.sparkles').appendChild(sparkle);
             
             setTimeout(() => {
                 sparkle.remove();
-            }, 3000);
+            }, 4000);
         }
 
-        // Tạo sparkle mới mỗi 500ms
-        setInterval(createSparkle, 500);
+        // Tạo bubble mới mỗi 2 giây
+        setInterval(createBubble, 2000);
+        
+        // Tạo particle mới mỗi 800ms
+        setInterval(createParticle, 800);
+        
+        // Tạo sparkle mới mỗi 600ms
+        setInterval(createSparkle, 600);
 
-        // Thêm hiệu ứng click
+        // Hiệu ứng click tạo explosion
         document.addEventListener('click', function(e) {
-            const heart = document.createElement('div');
-            heart.innerHTML = '💖';
-            heart.style.position = 'absolute';
-            heart.style.left = e.clientX + 'px';
-            heart.style.top = e.clientY + 'px';
-            heart.style.fontSize = '30px';
-            heart.style.pointerEvents = 'none';
-            heart.style.animation = 'floatAndFade 2s linear forwards';
-            heart.style.zIndex = '1000';
-            
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 2000);
+            // Tạo multiple hearts
+            for(let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = ['💖', '💙', '💫', '✨'][Math.floor(Math.random() * 4)];
+                heart.style.position = 'absolute';
+                heart.style.left = (e.clientX + (Math.random() - 0.5) * 100) + 'px';
+                heart.style.top = (e.clientY + (Math.random() - 0.5) * 100) + 'px';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = 'floatAndFade 2s linear forwards';
+                heart.style.zIndex = '1000';
+                heart.style.filter = 'drop-shadow(0 0 10px rgba(79, 172, 254, 0.8))';
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
         });
+
+        // Tạo hiệu ứng wave khi load
+        window.addEventListener('load', function() {
+            const container = document.querySelector('.container');
+            container.style.animation = 'fadeIn 2s ease-in-out';
+        });
+
+        // Thêm keyframe cho fadeIn
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: scale(0.8); }
+                to { opacity: 1; transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
