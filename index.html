@@ -35,10 +35,11 @@
         .bubble {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
             animation: bubbleFloat 15s infinite linear;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 1;
         }
 
         @keyframes bubbleFloat {
@@ -47,10 +48,10 @@
                 opacity: 0;
             }
             10% {
-                opacity: 1;
+                opacity: 0.6;
             }
             90% {
-                opacity: 1;
+                opacity: 0.6;
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
@@ -80,6 +81,7 @@
             margin-bottom: 40px;
             filter: drop-shadow(0 0 30px rgba(79, 172, 254, 0.6));
             position: relative;
+            z-index: 20;
         }
 
         @keyframes heartBeat {
@@ -102,44 +104,48 @@
 
         .text-container {
             position: relative;
-            height: 250px;
+            height: 400px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 15;
         }
 
         .floating-text {
             position: absolute;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
-            background: linear-gradient(45deg, #ffffff, #e3f2fd, #bbdefb);
+            background: linear-gradient(45deg, #ffffff, #e3f2fd, #bbdefb, #90caf9);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: floatAndFade 5s infinite linear;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 
+                         0 0 50px rgba(79, 172, 254, 0.4);
+            animation: floatAndFade 6s infinite linear;
             white-space: nowrap;
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(5px);
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(79, 172, 254, 0.2);
         }
 
-        .floating-text:nth-child(1) { animation-delay: 0s; left: 5%; }
-        .floating-text:nth-child(2) { animation-delay: 0.6s; left: 15%; }
-        .floating-text:nth-child(3) { animation-delay: 1.2s; left: 25%; }
-        .floating-text:nth-child(4) { animation-delay: 1.8s; left: 35%; }
-        .floating-text:nth-child(5) { animation-delay: 2.4s; left: 45%; }
-        .floating-text:nth-child(6) { animation-delay: 3s; left: 55%; }
-        .floating-text:nth-child(7) { animation-delay: 3.6s; left: 65%; }
-        .floating-text:nth-child(8) { animation-delay: 4.2s; left: 75%; }
+        .floating-text:nth-child(1) { animation-delay: 0s; left: 2%; }
+        .floating-text:nth-child(2) { animation-delay: 0.8s; left: 12%; }
+        .floating-text:nth-child(3) { animation-delay: 1.6s; left: 22%; }
+        .floating-text:nth-child(4) { animation-delay: 2.4s; left: 32%; }
+        .floating-text:nth-child(5) { animation-delay: 3.2s; left: 42%; }
+        .floating-text:nth-child(6) { animation-delay: 4s; left: 52%; }
+        .floating-text:nth-child(7) { animation-delay: 4.8s; left: 62%; }
+        .floating-text:nth-child(8) { animation-delay: 5.6s; left: 72%; }
 
         @keyframes floatAndFade {
             0% {
                 opacity: 0;
-                transform: translateY(120px) scale(0.3) rotate(-10deg);
-                filter: blur(5px);
+                transform: translateY(-50px) scale(0.8) rotate(-5deg);
+                filter: blur(3px);
             }
             15% {
                 opacity: 1;
@@ -148,13 +154,13 @@
             }
             85% {
                 opacity: 1;
-                transform: translateY(-80px) scale(1.1) rotate(5deg);
+                transform: translateY(80px) scale(1.05) rotate(3deg);
                 filter: blur(0px);
             }
             100% {
                 opacity: 0;
-                transform: translateY(-200px) scale(0.3) rotate(10deg);
-                filter: blur(5px);
+                transform: translateY(200px) scale(0.8) rotate(8deg);
+                filter: blur(3px);
             }
         }
 
@@ -163,42 +169,42 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 42px;
+            font-size: 46px;
             font-weight: bold;
             background: linear-gradient(45deg, #ffffff, #e1f5fe, #b3e5fc, #81d4fa);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 3s infinite alternate, bounce 4s infinite;
-            z-index: 20;
-            padding: 20px;
-            border-radius: 30px;
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            
-            box-shadow: 0 8px 32px rgba(79, 172, 254, 0.3);
+            z-index: 5;
+            padding: 25px 35px;
+            border-radius: 35px;
+            backdrop-filter: blur(25px);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 12px 40px rgba(79, 172, 254, 0.3);
         }
 
         @keyframes glow {
             from {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
-                            0 0 40px rgba(79, 172, 254, 0.6),
-                            0 0 60px rgba(79, 172, 254, 0.4);
-                box-shadow: 0 8px 32px rgba(79, 172, 254, 0.3),
+                text-shadow: 0 0 25px rgba(255, 255, 255, 0.9),
+                            0 0 50px rgba(79, 172, 254, 0.6),
+                            0 0 75px rgba(79, 172, 254, 0.4);
+                box-shadow: 0 12px 40px rgba(79, 172, 254, 0.3),
                            0 0 80px rgba(79, 172, 254, 0.2);
             }
             to {
-                text-shadow: 0 0 30px rgba(255, 255, 255, 1),
-                            0 0 60px rgba(79, 172, 254, 0.8),
-                            0 0 90px rgba(79, 172, 254, 0.6);
-                box-shadow: 0 12px 40px rgba(79, 172, 254, 0.5),
+                text-shadow: 0 0 35px rgba(255, 255, 255, 1),
+                            0 0 70px rgba(79, 172, 254, 0.8),
+                            0 0 105px rgba(79, 172, 254, 0.6);
+                box-shadow: 0 16px 50px rgba(79, 172, 254, 0.5),
                            0 0 120px rgba(79, 172, 254, 0.4);
             }
         }
 
         @keyframes bounce {
             0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.05); }
+            50% { transform: translate(-50%, -50%) scale(1.03); }
         }
 
         .sparkles {
@@ -206,7 +212,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 5;
+            z-index: 8;
         }
 
         .sparkle {
@@ -238,13 +244,14 @@
 
         .music-note {
             position: absolute;
-            font-size: 35px;
+            font-size: 30px;
             background: linear-gradient(45deg, #4facfe, #00f2fe);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: musicFloat 8s infinite linear;
+            animation: musicFloat 10s infinite linear;
             filter: drop-shadow(0 0 15px rgba(79, 172, 254, 0.6));
+            z-index: 6;
         }
 
         @keyframes musicFloat {
@@ -253,12 +260,12 @@
                 opacity: 0;
             }
             15% {
-                opacity: 1;
+                opacity: 0.8;
                 transform: translateY(80vh) rotate(45deg) scale(1);
             }
             85% {
-                opacity: 1;
-                transform: translateY(20vh) rotate(315deg) scale(1.2);
+                opacity: 0.8;
+                transform: translateY(20vh) rotate(315deg) scale(1.1);
             }
             100% {
                 transform: translateY(-100px) rotate(360deg) scale(0.5);
@@ -269,11 +276,12 @@
         /* Particle system */
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             background: radial-gradient(circle, rgba(79, 172, 254, 0.8), transparent);
             border-radius: 50%;
-            animation: particleMove 6s infinite linear;
+            animation: particleMove 8s infinite linear;
+            z-index: 3;
         }
 
         @keyframes particleMove {
@@ -282,10 +290,10 @@
                 opacity: 0;
             }
             10% {
-                opacity: 1;
+                opacity: 0.8;
             }
             90% {
-                opacity: 1;
+                opacity: 0.8;
             }
             100% {
                 transform: translateY(-100px) translateX(100px);
@@ -299,12 +307,32 @@
                 font-size: 80px;
             }
             .main-message {
+                font-size: 32px;
+                padding: 20px 25px;
+            }
+            .floating-text {
+                font-size: 22px;
+                padding: 10px 16px;
+            }
+            .text-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heart {
+                font-size: 70px;
+            }
+            .main-message {
                 font-size: 28px;
-                padding: 15px;
+                padding: 18px 22px;
             }
             .floating-text {
                 font-size: 20px;
-                padding: 6px 12px;
+                padding: 8px 14px;
+            }
+            .text-container {
+                height: 320px;
             }
         }
     </style>
@@ -314,27 +342,27 @@
         <div class="heart">💖</div>
         
         <div class="text-container">
-            <div class="floating-text">Đồ não cá vàng!</div>
-            <div class="floating-text">Ngu mà tỏ ra nguy hiểm!</div>
-            <div class="floating-text">Bớt ảo tưởng lại đi!</div>
-            <div class="floating-text">Thua cả con gà công nghiệp!</div>
-            <div class="floating-text">Tưởng hay lắm à?</div>
-            <div class="floating-text">Tụi mày là đồ con dog</div>
-            <div class="floating-text">AE sống như cẹc</div>
-            <div class="floating-text"> Mãi Keo💕</div>
+            <div class="floating-text">Đồ não cá vàng! 🐠</div>
+            <div class="floating-text">Ngu mà tỏ ra nguy hiểm! 🤡</div>
+            <div class="floating-text">Bớt ảo tưởng lại đi! 🙄</div>
+            <div class="floating-text">Thua cả con gà công nghiệp! 🐔</div>
+            <div class="floating-text">Tưởng hay lắm à? 😏</div>
+            <div class="floating-text">Tụi mày là đồ con dog 🐕</div>
+            <div class="floating-text">AE sống như cẹc 🦆</div>
+            <div class="floating-text">Bắn dở mà hổ báo! 🎯</div>
 
-            <div class="main-message">💖 Dành cho TỤI MÀY 💖</div>
+            <div class="main-message">💖 Dành cho MÀY 💖</div>
         </div>
 
         <div class="sparkles">
-            <div class="sparkle" style="top: 15%; left: 8%; animation-delay: 0s;">✨</div>
-            <div class="sparkle" style="top: 25%; left: 85%; animation-delay: 1s;">⭐</div>
-            <div class="sparkle" style="top: 65%; left: 15%; animation-delay: 2s;">💫</div>
-            <div class="sparkle" style="top: 85%; left: 75%; animation-delay: 0.5s;">✨</div>
-            <div class="sparkle" style="top: 45%; left: 92%; animation-delay: 1.5s;">⭐</div>
-            <div class="sparkle" style="top: 75%; left: 3%; animation-delay: 2.5s;">💫</div>
-            <div class="sparkle" style="top: 35%; left: 60%; animation-delay: 3s;">✨</div>
-            <div class="sparkle" style="top: 55%; left: 40%; animation-delay: 3.5s;">⭐</div>
+            <div class="sparkle" style="top: 15%; left: 8%; animation-delay: 0.5s;">✨</div>
+            <div class="sparkle" style="top: 25%; left: 85%; animation-delay: 1.5s;">⭐</div>
+            <div class="sparkle" style="top: 65%; left: 15%; animation-delay: 2.5s;">💫</div>
+            <div class="sparkle" style="top: 85%; left: 75%; animation-delay: 1s;">✨</div>
+            <div class="sparkle" style="top: 45%; left: 92%; animation-delay: 2s;">⭐</div>
+            <div class="sparkle" style="top: 75%; left: 3%; animation-delay: 3s;">💫</div>
+            <div class="sparkle" style="top: 35%; left: 60%; animation-delay: 3.5s;">✨</div>
+            <div class="sparkle" style="top: 55%; left: 40%; animation-delay: 4s;">⭐</div>
         </div>
 
         <div class="music-note" style="left: 5%; animation-delay: 0s;">🎵</div>
@@ -375,7 +403,7 @@
             
             setTimeout(() => {
                 particle.remove();
-            }, 6000);
+            }, 8000);
         }
 
         // Tạo sparkles động
@@ -395,35 +423,36 @@
             }, 4000);
         }
 
-        // Tạo bubble mới mỗi 2 giây
-        setInterval(createBubble, 2000);
+        // Tạo bubble mới mỗi 2.5 giây
+        setInterval(createBubble, 2500);
         
-        // Tạo particle mới mỗi 800ms
-        setInterval(createParticle, 800);
+        // Tạo particle mới mỗi giây
+        setInterval(createParticle, 1000);
         
-        // Tạo sparkle mới mỗi 600ms
-        setInterval(createSparkle, 600);
+        // Tạo sparkle mới mỗi 800ms
+        setInterval(createSparkle, 800);
 
-        // Hiệu ứng click tạo explosion
+        // Hiệu ứng click tạo explosion với nhiều màu sắc
         document.addEventListener('click', function(e) {
-            // Tạo multiple hearts
-            for(let i = 0; i < 5; i++) {
+            const effects = ['💖', '💙', '💜', '💚', '💛', '🧡', '💫', '✨', '🌟', '⭐'];
+            
+            for(let i = 0; i < 6; i++) {
                 const heart = document.createElement('div');
-                heart.innerHTML = ['💖', '💙', '💫', '✨'][Math.floor(Math.random() * 4)];
+                heart.innerHTML = effects[Math.floor(Math.random() * effects.length)];
                 heart.style.position = 'absolute';
-                heart.style.left = (e.clientX + (Math.random() - 0.5) * 100) + 'px';
-                heart.style.top = (e.clientY + (Math.random() - 0.5) * 100) + 'px';
-                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                heart.style.left = (e.clientX + (Math.random() - 0.5) * 120) + 'px';
+                heart.style.top = (e.clientY + (Math.random() - 0.5) * 120) + 'px';
+                heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
                 heart.style.pointerEvents = 'none';
-                heart.style.animation = 'floatAndFade 2s linear forwards';
+                heart.style.animation = 'floatAndFade 2.5s ease-out forwards';
                 heart.style.zIndex = '1000';
-                heart.style.filter = 'drop-shadow(0 0 10px rgba(79, 172, 254, 0.8))';
+                heart.style.filter = 'drop-shadow(0 0 15px rgba(79, 172, 254, 0.8))';
                 
                 document.body.appendChild(heart);
                 
                 setTimeout(() => {
                     heart.remove();
-                }, 2000);
+                }, 2500);
             }
         });
 
@@ -437,7 +466,7 @@
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fadeIn {
-                from { opacity: 0; transform: scale(0.8); }
+                from { opacity: 0; transform: scale(0.9); }
                 to { opacity: 1; transform: scale(1); }
             }
         `;
